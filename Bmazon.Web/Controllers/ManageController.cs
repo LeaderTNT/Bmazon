@@ -75,6 +75,15 @@ namespace Bmazon.Web.Controllers
             return View(model);
         }
 
+        public ActionResult ChangeMode()
+        {
+            bool isSeller = (bool)Session["isSeller"];
+            if (isSeller)
+                Session["isSeller"] = false;
+            else
+                Session["isSeller"] = true;
+            return RedirectToAction("Index");
+        }
         //
         // POST: /Manage/RemoveLogin
         [HttpPost]

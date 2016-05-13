@@ -9,6 +9,8 @@
 
 </head>
 <body>
+    @if (Session["isSeller"] == null) { Session["isSeller"] = false; }
+    <input type="hidden" id="isSeller" value="@Session["isSeller"]">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -17,13 +19,28 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Bmazon", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", id = "Bmazon" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @{
+                        if (!(bool)Session["isSeller"])
+                        {                          
+                            <li>@Html.ActionLink("Profile", "Index", "Customer")</li>
+                            <li>@Html.ActionLink("Shopping", "Index", "Product")</li>
+                            <li><a href="#">On Customer Side</a></li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Profile", "Index", "Seller")</li>
+                            <li>@Html.ActionLink("Management", "Index", "Management")</li>
+                            <li><a href="#">On Seller Side</a></li>
+                        }
+                    }
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -40,5 +57,22 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        function setIsSeller() {
+            var isSeller = document.getElementById("isSeller")
+            if (isSeller.value){
+                isSeller.value = false
+                document.getElementById("1").style.visibility = "visible";
+                document.getElementById("2").style.visibility = "hidden";
+
+            }
+            else {
+                isSeller.value = true
+                document.getElementById("1").style.visibility = "hidden";
+                document.getElementById("2").style.visibility = "visible";
+            }
+                
+        }
+    </script>
 </body>
 </html>
