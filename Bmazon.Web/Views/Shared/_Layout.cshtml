@@ -26,18 +26,17 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Profile", "Index", "Profile")</li>
                     @{
                         if (!(bool)Session["isSeller"])
                         {                          
-                            <li>@Html.ActionLink("Profile", "Index", "Customer")</li>
                             <li>@Html.ActionLink("Shopping", "Index", "Product")</li>
-                            <li><a href="#">On Customer Side</a></li>
+                            <li><a href="#"><font color="orange">On Customer Side</font></a></li>
                         }
                         else
                         {
-                            <li>@Html.ActionLink("Profile", "Index", "Seller")</li>
                             <li>@Html.ActionLink("Management", "Index", "Management")</li>
-                            <li><a href="#">On Seller Side</a></li>
+                            <li><a href="#"><font color="orange">On Seller Side</font><</a></li>
                         }
                     }
 
