@@ -60,17 +60,33 @@
     <Compile Include="Account.cs" />
     <Compile Include="BoughtProduct.cs" />
     <Compile Include="Cart.cs" />
-    <Compile Include="Customer.cs" />
+    <Compile Include="IdentityModels.cs" />
+    <Compile Include="Migrations\201605170251415_Stable.cs" />
+    <Compile Include="Migrations\201605170251415_Stable.Designer.cs">
+      <DependentUpon>201605170251415_Stable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605170306167_SetCompanyUnique.cs" />
+    <Compile Include="Migrations\201605170306167_SetCompanyUnique.Designer.cs">
+      <DependentUpon>201605170306167_SetCompanyUnique.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="PaymentOption.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Review.cs" />
-    <Compile Include="Seller.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201605170251415_Stable.resx">
+      <DependentUpon>201605170251415_Stable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605170306167_SetCompanyUnique.resx">
+      <DependentUpon>201605170306167_SetCompanyUnique.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

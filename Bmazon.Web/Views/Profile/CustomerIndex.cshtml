@@ -1,0 +1,58 @@
+﻿@model Bmazon.Models.CustomerProfileModel
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BillingAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BillingAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShippingAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShippingAddress)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditCustomer") |
+    @Html.ActionLink("Back to List", "../Home/Index")
+</p>
