@@ -32,12 +32,6 @@ namespace Bmazon.Data
             return new BmazonDbContext();
         }
 
-
-        public DbSet<Account> Accounts { get; set; }
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<Seller> Sellers { get; set; }
-        public DbSet<Cart> Carts { get; set; }
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
@@ -58,6 +52,13 @@ namespace Bmazon.Data
                 m.ToTable("Customer");
             });
         }
+
+        public DbSet<Account> Accounts { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Seller> Sellers { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Review> Reviews { get; set; }
     }
 
     public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
