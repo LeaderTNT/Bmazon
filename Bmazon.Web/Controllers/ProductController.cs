@@ -16,25 +16,44 @@ namespace Bmazon.Web.Controllers
     [Authorize]
     public class ProductController : Controller
     {
-        private readonly Lazy<ProductService> _svc;
+        private readonly Lazy<ProductService> _svcProduct;
+        private readonly Lazy<ReviewService> _svcReview;
         public ProductController()
         {
-            _svc =
+            _svcProduct =
                 new Lazy<ProductService>(
                     () =>
                     {
                         var email = User.Identity.GetUserName();
                         return new ProductService(email);
                     });
+
+            _svcReview =
+                new Lazy<ReviewService>(
+                    () =>
+                    {
+                        var email = User.Identity.GetUserName();
+                        return new ReviewService(email);
+                    });
         }
 
         //Action For Seller Side
 
-        public ActionResult SellerIndex()
+        public ActionResult SellerIndex(int? id)
         {
             CheckCustomer((bool)Session["isSeller"]);
 
-            return View(_svc.Value.GetProductsForSeller());
+            var viewModel = new ProductIndexData();
+            viewModel.Products = _svcProduct.Value.GetProductsForSeller();
+
+            if (id != null)
+            {
+                ViewBag.ProductID = id.Value;
+                viewModel.AverageRating = _svcReview.Value.GetAverageRating(id.Value);
+                viewModel.Reviews = _svcReview.Value.GetReviewsForProduct(id.Value);
+            }
+
+            return View(viewModel);
         }
 
         // GET: Products/Create
@@ -52,7 +71,7 @@ namespace Bmazon.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (!_svc.Value.CreateProduct(vm))
+                    if (!_svcProduct.Value.CreateProduct(vm))
                     {
                         ModelState.AddModelError("", "Unable to create note");
                         return View(vm);
@@ -73,7 +92,7 @@ namespace Bmazon.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var detail = _svc.Value.GetProductForSellerByID(id);
+            var detail = _svcProduct.Value.GetProductForSellerByID(id);
             if (detail == null)
             {
                 return HttpNotFound();
@@ -98,7 +117,7 @@ namespace Bmazon.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (!_svc.Value.UpdateProduct(vm))
+                if (!_svcProduct.Value.UpdateProduct(vm))
                 {
                     ModelState.AddModelError("", "Unable to update note");
                     return View(vm);
@@ -118,7 +137,7 @@ namespace Bmazon.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var detail = _svc.Value.GetProductForSellerByID(id);
+            var detail = _svcProduct.Value.GetProductForSellerByID(id);
             if (detail == null)
             {
                 return HttpNotFound();
@@ -142,14 +161,23 @@ namespace Bmazon.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? id)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return View();
+
+            try
             {
-                if (!_svc.Value.DeleteProduct(id))
-                {
-                    ModelState.AddModelError("", "Unable to delete note");
-                    return View();
-                }
-                return RedirectToAction("SellerIndex");
+                _svcProduct.Value.DeleteProduct(id);
+            }
+
+            catch (System.Data.Entity.Infrastructure.DbUpdateException e)
+            {
+                ModelState.AddModelError("Error", e.Message);
+                return View();
+            }
+
+            catch (Exception e)
+            {
+                ModelState.AddModelError("Error", e.Message + "\nUnable to update profile");
+                return View();
             }
 
             return RedirectToAction("SellerIndex");

@@ -17,8 +17,11 @@ namespace Bmazon.Services
         {
             _email = email;
             using (var ctx = new BmazonDbContext())
-            _company = ctx.Sellers.SingleOrDefault(s => s.Email == _email).Company;
+            {
+                _company = ctx.Sellers.SingleOrDefault(s => s.Email == _email).Company;
+            }
         }
+            
 
         public IEnumerable<SellerProductModel> GetProductsForSeller()
         {
@@ -26,7 +29,7 @@ namespace Bmazon.Services
             {
                 return
                     ctx
-                        .Products.Include("Review")
+                        .Products
                         .Where(e => e.Seller == _company)
                         .Select(
                             e =>

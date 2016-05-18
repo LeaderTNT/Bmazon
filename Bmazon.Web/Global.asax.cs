@@ -17,5 +17,10 @@ namespace Bmazon.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        protected void Session_Start(Object sender, EventArgs e)
+        {
+            HttpContext.Current.Session.Add("isSeller", true);
+        }
     }
 }

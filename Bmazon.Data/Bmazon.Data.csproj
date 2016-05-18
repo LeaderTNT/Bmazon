@@ -69,6 +69,22 @@
     <Compile Include="Migrations\201605170306167_SetCompanyUnique.Designer.cs">
       <DependentUpon>201605170306167_SetCompanyUnique.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605172033318_ModifyReviewBmazon.Data.cs" />
+    <Compile Include="Migrations\201605172033318_ModifyReviewBmazon.Data.Designer.cs">
+      <DependentUpon>201605172033318_ModifyReviewBmazon.Data.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605181123191_ModifyReview.cs" />
+    <Compile Include="Migrations\201605181123191_ModifyReview.Designer.cs">
+      <DependentUpon>201605181123191_ModifyReview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605181338087_ModifyReviewAgain.cs" />
+    <Compile Include="Migrations\201605181338087_ModifyReviewAgain.Designer.cs">
+      <DependentUpon>201605181338087_ModifyReviewAgain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605181442093_ModifyReviewAgainAndAgain.cs" />
+    <Compile Include="Migrations\201605181442093_ModifyReviewAgainAndAgain.Designer.cs">
+      <DependentUpon>201605181442093_ModifyReviewAgainAndAgain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="PaymentOption.cs" />
@@ -86,6 +102,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605170306167_SetCompanyUnique.resx">
       <DependentUpon>201605170306167_SetCompanyUnique.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605172033318_ModifyReviewBmazon.Data.resx">
+      <DependentUpon>201605172033318_ModifyReviewBmazon.Data.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605181123191_ModifyReview.resx">
+      <DependentUpon>201605181123191_ModifyReview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605181338087_ModifyReviewAgain.resx">
+      <DependentUpon>201605181338087_ModifyReviewAgain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605181442093_ModifyReviewAgainAndAgain.resx">
+      <DependentUpon>201605181442093_ModifyReviewAgainAndAgain.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

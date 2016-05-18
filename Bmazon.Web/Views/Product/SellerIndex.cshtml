@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Bmazon.Models.SellerProductModel>
+﻿@model Bmazon.Models.ProductIndexData
 
 @{
     ViewBag.Title = "Index";
@@ -12,22 +12,28 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Product Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            Description
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AvailableNum)
+            Availabe Number
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            Price
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
+@foreach (var item in Model.Products)
+{
+    string selectedRow = "";
+    if (item.ProductID == ViewBag.ProductID)
+    {
+        selectedRow = "success";
+    }
+    <tr class="@selectedRow">
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
@@ -41,9 +47,38 @@
             @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProductID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProductID })
+            @Html.ActionLink("Select", "SellerIndex", new { id = item.ProductID }) |
+            @Html.ActionLink("Edit", "Edit", new { id = item.ProductID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ProductID })
         </td>
     </tr>
 }
 </table>
+
+@if (Model.Reviews != null)
+{
+    <h3>Reviews for Selected Product</h3>
+    <h4>Rating: @Model.AverageRating</h4>     
+    <table class="table">
+        <tr>
+            <th>Reviewer</th>
+            <th>Rating</th>
+            <th>Comment</th>
+        </tr>
+
+        @foreach (var item in Model.Reviews)
+        {
+            <tr>
+                <td>
+                    @item.CustomerEmail
+                </td>
+                <td>
+                    @item.Rating
+                </td>
+                <td>
+                    @item.Comment
+                </td>
+            </tr>
+        }
+    </table>
+}
