@@ -7,13 +7,13 @@ namespace Bmazon.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ModifyReview : IMigrationMetadata
+    public sealed partial class Update : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ModifyReview));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Update));
         
         string IMigrationMetadata.Id
         {
-            get { return "201605181123191_ModifyReview"; }
+            get { return "201605181701084_Update"; }
         }
         
         string IMigrationMetadata.Source

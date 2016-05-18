@@ -28,12 +28,11 @@ namespace Bmazon.Data
 
     public class Seller : Account
     {
+        [MaxLength (128, ErrorMessage = "The company name is too long")]
         [Index("CompanyIndex", IsUnique = true)]
         public string Company { get; set; }
 
         public double Earning { get; set; }
-
-        public virtual IEnumerable<Review> Reviews { get; set; }
 
         public virtual IEnumerable<Order> Orders { get; set; }
 
@@ -47,8 +46,6 @@ namespace Bmazon.Data
         public string ShippingAddress { get; set; }
 
         public Cart Cart { get; set; }
-
-        public virtual ICollection<Review> Reviews { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
 

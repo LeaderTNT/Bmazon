@@ -1,0 +1,33 @@
+﻿@model Bmazon.Models.ReviewViewModel
+
+@{
+    ViewBag.Title = "Company Review";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>@Model.Company</h3>
+<h4>Rating: @Model.AverageRating</h4>     
+<table class="table">
+    <tr>
+        <th>Reviewer</th>
+        <th>Rating</th>
+        <th>Comment</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Reviews) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Reviewer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comment)
+        </td>
+    </tr>
+}
+
+</table>

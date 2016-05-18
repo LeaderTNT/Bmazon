@@ -33,7 +33,7 @@
                         else
                         {
                             <li>@Html.ActionLink("Product", "SellerIndex", "Product")</li>
-                            <li>@Html.ActionLink("Review", "Review", "Review")</li>
+                            <li>@Html.ActionLink("Review", "SellerIndex", "Review")</li>
                             <li>@Html.ActionLink("Order", "Order", "Order")</li>
                             <li><a href="#"><font color="orange">On Seller Side</font></a></li>
                         }
@@ -55,22 +55,5 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    <script type="text/javascript">
-        function setIsSeller() {
-            var isSeller = document.getElementById("isSeller")
-            if (isSeller.value){
-                isSeller.value = false
-                document.getElementById("1").style.visibility = "visible";
-                document.getElementById("2").style.visibility = "hidden";
-
-            }
-            else {
-                isSeller.value = true
-                document.getElementById("1").style.visibility = "hidden";
-                document.getElementById("2").style.visibility = "visible";
-            }
-                
-        }
-    </script>
 </body>
 </html>

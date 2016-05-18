@@ -11,8 +11,8 @@
             @{
                 var email = User.Identity.GetUserName();
                 var _svc = new AccountService(email);
-                var firstName = (bool)Session["isSeller"] ? _svc.GetSeller().FirstName : _svc.GetCustomer().FirstName;
-                var display = firstName == null ? email : firstName;
+                var name = (bool)Session["isSeller"] ? _svc.GetSeller().Company : _svc.GetCustomer().FirstName;
+                var display = name == null ? email : name;
 
                 DateTimeOffset current = DateTimeOffset.UtcNow.LocalDateTime;
 

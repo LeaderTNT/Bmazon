@@ -10,14 +10,10 @@ namespace Bmazon.Services
     public class ReviewService
     {
         private readonly string _email;
-        private readonly string _company;
 
         public ReviewService(string email)
         {
             _email = email;
-            using (var ctx = new BmazonDbContext()) {
-                _company = ctx.Sellers.SingleOrDefault(s => s.Email == _email).Company;
-            }
         }
 
         public IEnumerable<Review> GetReviewsForProduct(int ProductID)
@@ -35,20 +31,50 @@ namespace Bmazon.Services
         {
             using (var ctx = new BmazonDbContext())
             {
-                string query = "SELECT * FROM Review WHERE Seller_Email = @p0";
+                string query = "SELECT * FROM Review WHERE SellerEmail = @p0";
                 IEnumerable<Review> reviews = ctx.Reviews.SqlQuery(query, SellerEmail).ToArray();
 
                 return reviews;
             }
         }
 
-        public double GetAverageRating(int ProductID)
+        public double GetProductAverageRating(int productID)
         {
             using (var ctx = new BmazonDbContext())
             {
-                double rating = ctx.Reviews.Select(r => r.Rating).Average();
+                try
+                {
+                    double rating = ctx.Reviews.Where(r => r.ProductID == productID).Select(r => r.Rating).Average();
+                    return rating;
+                }
+                catch
+                {
+                    return 0;
+                }
+            }
+        }
 
-                return rating;
+        public double GetSellerAverageRating(string email)
+        {
+            using (var ctx = new BmazonDbContext())
+            {
+                try
+                {
+                    double rating = ctx.Reviews.Where(r => r.SellerEmail == email).Select(r => r.Rating).Average();
+                    return rating;
+                }
+                catch
+                {
+                    return 0;
+                }
+            }
+        }
+
+        public string ConvertToCampanyName(string email)
+        {
+            using (var ctx = new BmazonDbContext())
+            {
+                return ctx.Sellers.SingleOrDefault(s => s.Email == _email).Company;
             }
         }
     }

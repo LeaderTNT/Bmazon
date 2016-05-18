@@ -11,15 +11,10 @@ namespace Bmazon.Services
     public class ProductService
     {
         private readonly string _email;
-        private readonly string _company;
 
         public ProductService(string email)
         {
             _email = email;
-            using (var ctx = new BmazonDbContext())
-            {
-                _company = ctx.Sellers.SingleOrDefault(s => s.Email == _email).Company;
-            }
         }
             
 
@@ -30,7 +25,7 @@ namespace Bmazon.Services
                 return
                     ctx
                         .Products
-                        .Where(e => e.Seller == _company)
+                        .Where(e => e.Seller == _email)
                         .Select(
                             e =>
                                 new SellerProductModel
@@ -73,7 +68,7 @@ namespace Bmazon.Services
                 var entity =
                     new Product
                     {
-                        Seller = _company,
+                        Seller = _email,
                         Name = vm.Name,
                         Description = vm.Description,
                         AvailableNum = vm.AvailableNum,
@@ -104,14 +99,23 @@ namespace Bmazon.Services
         public bool DeleteProduct(int? id)
         {
             using (var ctx = new BmazonDbContext())
-            {
+            {            
+                ctx.Database.ExecuteSqlCommand($"DELETE FROM Review WHERE ProductID = {id}");
+
                 var entity = ctx.Products.SingleOrDefault(e => e.ProductID == id);
 
                 // TODO: Handle note not found
-
                 ctx.Products.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public string ConvertToCampanyName(string email)
+        {
+            using (var ctx = new BmazonDbContext())
+            {
+                return ctx.Sellers.SingleOrDefault(s => s.Email == _email).Company;
             }
         }
     }

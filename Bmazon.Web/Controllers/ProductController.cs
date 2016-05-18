@@ -43,13 +43,13 @@ namespace Bmazon.Web.Controllers
         {
             CheckCustomer((bool)Session["isSeller"]);
 
-            var viewModel = new ProductIndexData();
+            var viewModel = new ReviewViewModel();
             viewModel.Products = _svcProduct.Value.GetProductsForSeller();
 
             if (id != null)
             {
                 ViewBag.ProductID = id.Value;
-                viewModel.AverageRating = _svcReview.Value.GetAverageRating(id.Value);
+                viewModel.AverageRating = _svcReview.Value.GetProductAverageRating(id.Value);
                 viewModel.Reviews = _svcReview.Value.GetReviewsForProduct(id.Value);
             }
 

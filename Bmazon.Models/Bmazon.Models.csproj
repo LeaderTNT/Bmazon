@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomerProfileModel.cs" />
-    <Compile Include="ProductIndexData.cs" />
+    <Compile Include="ReviewViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SellerProductModel.cs" />
     <Compile Include="SellerProfileModel.cs" />

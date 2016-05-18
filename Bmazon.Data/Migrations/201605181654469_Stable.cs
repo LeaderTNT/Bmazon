@@ -49,22 +49,6 @@ namespace Bmazon.Data.Migrations
                 .Index(t => t.Customer_Email);
             
             CreateTable(
-                "dbo.Review",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        CustomerID = c.String(),
-                        ProductID = c.String(),
-                        SellerID = c.String(),
-                        Rating = c.Int(nullable: false),
-                        Comment = c.String(),
-                        Customer_Email = c.String(maxLength: 128),
-                    })
-                .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Customer", t => t.Customer_Email)
-                .Index(t => t.Customer_Email);
-            
-            CreateTable(
                 "dbo.Product",
                 c => new
                     {
@@ -82,6 +66,19 @@ namespace Bmazon.Data.Migrations
                 .PrimaryKey(t => t.ProductID)
                 .ForeignKey("dbo.Seller", t => t.Seller_Email)
                 .Index(t => t.Seller_Email);
+            
+            CreateTable(
+                "dbo.Review",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Reviewer = c.String(),
+                        ProductID = c.Int(nullable: false),
+                        SellerID = c.String(),
+                        Rating = c.Int(nullable: false),
+                        Comment = c.String(),
+                    })
+                .PrimaryKey(t => t.ID);
             
             CreateTable(
                 "dbo.IdentityRole",
@@ -177,10 +174,11 @@ namespace Bmazon.Data.Migrations
                         FirstName = c.String(maxLength: 50),
                         LastName = c.String(maxLength: 50),
                         PhoneNumber = c.String(),
-                        Company = c.String(),
+                        Company = c.String(maxLength: 128),
                         Earning = c.Double(nullable: false),
                     })
-                .PrimaryKey(t => t.Email);
+                .PrimaryKey(t => t.Email)
+                .Index(t => t.Company, unique: true, name: "CompanyIndex");
             
         }
         
@@ -192,17 +190,16 @@ namespace Bmazon.Data.Migrations
             DropForeignKey("dbo.IdentityUserClaim", "BmazonAccount_Id", "dbo.BmazonAccount");
             DropForeignKey("dbo.IdentityUserRole", "IdentityRole_Id", "dbo.IdentityRole");
             DropForeignKey("dbo.Product", "Seller_Email", "dbo.Seller");
-            DropForeignKey("dbo.Review", "Customer_Email", "dbo.Customer");
             DropForeignKey("dbo.PaymentOption", "Customer_Email", "dbo.Customer");
             DropForeignKey("dbo.Order", "Customer_Email", "dbo.Customer");
             DropForeignKey("dbo.Order", "PaymentOption_ID", "dbo.PaymentOption");
+            DropIndex("dbo.Seller", "CompanyIndex");
             DropIndex("dbo.Customer", new[] { "Cart_CustomerID" });
             DropIndex("dbo.IdentityUserLogin", new[] { "BmazonAccount_Id" });
             DropIndex("dbo.IdentityUserClaim", new[] { "BmazonAccount_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "BmazonAccount_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "IdentityRole_Id" });
             DropIndex("dbo.Product", new[] { "Seller_Email" });
-            DropIndex("dbo.Review", new[] { "Customer_Email" });
             DropIndex("dbo.PaymentOption", new[] { "Customer_Email" });
             DropIndex("dbo.Order", new[] { "Customer_Email" });
             DropIndex("dbo.Order", new[] { "PaymentOption_ID" });
@@ -213,8 +210,8 @@ namespace Bmazon.Data.Migrations
             DropTable("dbo.BmazonAccount");
             DropTable("dbo.IdentityUserRole");
             DropTable("dbo.IdentityRole");
-            DropTable("dbo.Product");
             DropTable("dbo.Review");
+            DropTable("dbo.Product");
             DropTable("dbo.PaymentOption");
             DropTable("dbo.Order");
             DropTable("dbo.Cart");

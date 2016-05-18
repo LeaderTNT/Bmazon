@@ -61,29 +61,17 @@
     <Compile Include="BoughtProduct.cs" />
     <Compile Include="Cart.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\201605170251415_Stable.cs" />
-    <Compile Include="Migrations\201605170251415_Stable.Designer.cs">
-      <DependentUpon>201605170251415_Stable.cs</DependentUpon>
+    <Compile Include="Migrations\201605181654469_Stable.cs" />
+    <Compile Include="Migrations\201605181654469_Stable.Designer.cs">
+      <DependentUpon>201605181654469_Stable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201605170306167_SetCompanyUnique.cs" />
-    <Compile Include="Migrations\201605170306167_SetCompanyUnique.Designer.cs">
-      <DependentUpon>201605170306167_SetCompanyUnique.cs</DependentUpon>
+    <Compile Include="Migrations\201605181701084_Update.cs" />
+    <Compile Include="Migrations\201605181701084_Update.Designer.cs">
+      <DependentUpon>201605181701084_Update.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201605172033318_ModifyReviewBmazon.Data.cs" />
-    <Compile Include="Migrations\201605172033318_ModifyReviewBmazon.Data.Designer.cs">
-      <DependentUpon>201605172033318_ModifyReviewBmazon.Data.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605181123191_ModifyReview.cs" />
-    <Compile Include="Migrations\201605181123191_ModifyReview.Designer.cs">
-      <DependentUpon>201605181123191_ModifyReview.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605181338087_ModifyReviewAgain.cs" />
-    <Compile Include="Migrations\201605181338087_ModifyReviewAgain.Designer.cs">
-      <DependentUpon>201605181338087_ModifyReviewAgain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605181442093_ModifyReviewAgainAndAgain.cs" />
-    <Compile Include="Migrations\201605181442093_ModifyReviewAgainAndAgain.Designer.cs">
-      <DependentUpon>201605181442093_ModifyReviewAgainAndAgain.cs</DependentUpon>
+    <Compile Include="Migrations\201605181712273_Update1.cs" />
+    <Compile Include="Migrations\201605181712273_Update1.Designer.cs">
+      <DependentUpon>201605181712273_Update1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Order.cs" />
@@ -97,23 +85,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201605170251415_Stable.resx">
-      <DependentUpon>201605170251415_Stable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201605181654469_Stable.resx">
+      <DependentUpon>201605181654469_Stable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605170306167_SetCompanyUnique.resx">
-      <DependentUpon>201605170306167_SetCompanyUnique.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201605181701084_Update.resx">
+      <DependentUpon>201605181701084_Update.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605172033318_ModifyReviewBmazon.Data.resx">
-      <DependentUpon>201605172033318_ModifyReviewBmazon.Data.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605181123191_ModifyReview.resx">
-      <DependentUpon>201605181123191_ModifyReview.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605181338087_ModifyReviewAgain.resx">
-      <DependentUpon>201605181338087_ModifyReviewAgain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605181442093_ModifyReviewAgainAndAgain.resx">
-      <DependentUpon>201605181442093_ModifyReviewAgainAndAgain.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201605181712273_Update1.resx">
+      <DependentUpon>201605181712273_Update1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

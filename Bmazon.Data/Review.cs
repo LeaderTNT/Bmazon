@@ -11,22 +11,16 @@ namespace Bmazon.Data
     {
         public int ID { get; set; }
 
-        [Display (Name = "Reviewer")]
-        public string CustomerEmail { get; set; }
-
-        public string Company { get; set; }
+        public string Reviewer { get; set; }
 
         public int ProductID { get; set; }
+
+        public string SellerEmail { get; set; }
 
         [Range(1, 5, ErrorMessage = "Rating must be between 1 and 5")]
         public int Rating { get; set; }
 
         public string Comment { get; set; }
 
-        public Seller Seller { set; get; }
-
-        public Product Product { get; set; }
-
-        public Customer Reviewer { get; set; }
     }
 }
