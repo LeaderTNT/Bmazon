@@ -48,8 +48,5 @@ namespace Bmazon.Data
         public Cart Cart { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
-
-        public virtual ICollection<PaymentOption> PaymentOptions { get; set; }
-
     }
 }

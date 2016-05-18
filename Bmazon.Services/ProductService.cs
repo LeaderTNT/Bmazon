@@ -25,7 +25,7 @@ namespace Bmazon.Services
                 return
                     ctx
                         .Products
-                        .Where(e => e.Seller == _email)
+                        .Where(e => e.Seller == _email && !(e is BoughtProduct))
                         .Select(
                             e =>
                                 new SellerProductModel

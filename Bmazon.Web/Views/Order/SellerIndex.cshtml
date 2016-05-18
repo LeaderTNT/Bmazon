@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Bmazon.Data.Order>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Seller.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPayment)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Seller.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalPayment)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.OrderID })
+        </td>
+    </tr>
+}
+
+</table>

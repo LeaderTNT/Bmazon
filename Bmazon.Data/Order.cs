@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,14 +11,17 @@ namespace Bmazon.Data
     {
         public int OrderID { get; set; }
 
-        public string Buyer { get; set; }
+        public string CustomerEmail { get; set; }
 
-        public string Seller { get; set; }
+        public string SellerEmail { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:0.00}")]
         public double TotalPayment { get; set; }
 
         public virtual IEnumerable<BoughtProduct> BoughtProducts { get; set; }
 
-        public PaymentOption PaymentOption { get; set; }
+        public Customer Customer { get; set; }
+
+        public Seller Seller { get; set; }
     }
 }

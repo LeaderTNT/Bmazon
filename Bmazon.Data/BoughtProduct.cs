@@ -13,5 +13,7 @@ namespace Bmazon.Data
 
         [Range(1, 100, ErrorMessage = "The quantity must be between 1 and 100")]
         public int Quantity { get; set; }
+
+        public Order Order { get; set; }
     }
 }
