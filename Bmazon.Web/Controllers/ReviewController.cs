@@ -13,6 +13,7 @@ using Bmazon.Models;
 
 namespace Bmazon.Web.Controllers
 {
+    [Authorize]
     public class ReviewController : Controller
     {
         private readonly Lazy<ReviewService> _svc;

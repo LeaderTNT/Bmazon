@@ -15,7 +15,8 @@ namespace Bmazon.Data
 
         public string SellerEmail { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:0.00}")]
+        [DisplayFormat(DataFormatString = "{0:$0.00}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Total Payment")]
         public double TotalPayment { get; set; }
 
         public virtual IEnumerable<BoughtProduct> BoughtProducts { get; set; }

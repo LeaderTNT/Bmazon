@@ -23,7 +23,8 @@ namespace Bmazon.Models
         public int AvailableNum { get; set; }
 
         [Range(0, Double.MaxValue, ErrorMessage = "The price cannot be negative")]
-        [DisplayFormat(DataFormatString = "{0:0.00}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:$0.00}", ApplyFormatInEditMode = true)]
+        //[DataType(DataType.Currency)]
         public double Price { get; set; }
 
         public virtual IEnumerable<Review> Reviews { get; set; }

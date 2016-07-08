@@ -10,6 +10,7 @@ using Bmazon.Data;
 
 namespace Bmazon.Web.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         private BmazonDbContext db = new BmazonDbContext();

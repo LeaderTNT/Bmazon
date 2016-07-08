@@ -59,8 +59,7 @@ namespace Bmazon.Data
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Review> Reviews { get; set; }
-
-        public System.Data.Entity.DbSet<Bmazon.Data.Order> Orders { get; set; }
+        public DbSet<Order> Orders { get; set; }
     }
 
     public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
