@@ -14,6 +14,10 @@
         <th>
             @Html.DisplayNameFor(model => model.TotalPayment)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -23,6 +27,12 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.TotalPayment)
+        </td>
+        <td>
+            @Html.EnumDropDownListFor(modelItem => item.Status)
+        </td>
+        <td>
+           <a href="#">Detail</a>
         </td>
     </tr>
 }

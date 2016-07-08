@@ -81,6 +81,10 @@
     <Compile Include="Migrations\201605181838155_ModifyBmazon.Data.Designer.cs">
       <DependentUpon>201605181838155_ModifyBmazon.Data.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607081548320_AddStatusPropertyInOrder.cs" />
+    <Compile Include="Migrations\201607081548320_AddStatusPropertyInOrder.Designer.cs">
+      <DependentUpon>201607081548320_AddStatusPropertyInOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Product.cs" />
@@ -106,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605181838155_ModifyBmazon.Data.resx">
       <DependentUpon>201605181838155_ModifyBmazon.Data.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607081548320_AddStatusPropertyInOrder.resx">
+      <DependentUpon>201607081548320_AddStatusPropertyInOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
