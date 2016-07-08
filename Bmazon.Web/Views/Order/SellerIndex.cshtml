@@ -5,7 +5,7 @@
 }
 
 <h2>Index</h2>
-
+<h3>Text</h3>
 <table class="table">
     <tr>
         <th>
@@ -29,7 +29,7 @@
             @Html.DisplayFor(modelItem => item.TotalPayment)
         </td>
         <td>
-            @Html.EnumDropDownListFor(modelItem => item.Status)
+            @Html.EnumDropDownListFor(modelItem => item.Status, new { Id = item.OrderID })
         </td>
         <td>
            <a href="#">Detail</a>
@@ -38,3 +38,24 @@
 }
 
 </table>
+@section scripts {
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            $('select').change(function () {
+                var statusValue = $(this).val()
+                var orderId = $(this).attr('id')
+                $.ajax({
+                    method: "POST",
+                    url: "/Order/UpdateStatus",
+                    data: '{id: "' + orderId + '", statusValue: "' + statusValue + ' "}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    failure: function (response) {
+                        alert("Fail to change the order status");
+                    }
+                })
+            })
+        });
+    </script>
+}
+  
