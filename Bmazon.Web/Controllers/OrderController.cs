@@ -18,6 +18,7 @@ namespace Bmazon.Web.Controllers
         // GET: Order
         public ActionResult SellerIndex()
         {
+            CheckCustomer((bool)Session["isSeller"]);
             var orders = db.Orders.Include(o => o.Customer).Include(o => o.Seller);
             return View(orders.ToList());
         }
@@ -99,6 +100,17 @@ namespace Bmazon.Web.Controllers
 
                 return result == 1;
             }
+        }
+        private void CheckSeller(bool isSeller)
+        {
+            if (isSeller)
+                Response.Write("<script language='javascript'>window.alert('You need to change to a Customer Mode to access this page!'); window.location='/Manage/Index';</script>");
+        }
+
+        private void CheckCustomer(bool isSeller)
+        {
+            if (!isSeller)
+                Response.Write("<script language='javascript'>window.alert('You need to change to a Seller Mode to access this page!'); window.location='/Manage/Index';</script>");
         }
 
     }

@@ -60,4 +60,10 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $('[type=text]').val("Abc@gmail.com")
+                $('[type=password]').val("@("@")username")
+            })
+    </script>
 }
